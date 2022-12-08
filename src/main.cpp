@@ -20,6 +20,7 @@ void publishConfirm(String type);
 // NETWORK
 void wifiConnect();
 void mqttReconnect();
+void wifiCheck();
 void failedReconnect();
 // DATA HANDLING
 void callback(char *topic, byte *message, unsigned int length);
@@ -50,6 +51,7 @@ void loop()
     mqttReconnect();
   }
   client.loop();
+  wifiCheck();
 }
 
 /////////////STATIC FUNCTION/////////////
