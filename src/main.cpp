@@ -39,7 +39,7 @@ void setup()
   // Setup pin mode
   dht.begin();
   myServo.attach(servoPin);
-  resetServo();
+  // resetServo();
   pinMode(lightSensor, INPUT);
   pinMode(soundSensor, INPUT);
 }

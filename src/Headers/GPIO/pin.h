@@ -11,4 +11,4 @@ Servo myServo;
 const int lightSensor = 4;
 
 const int soundSensor = 5;
-const int servoPin = 6;
+const int servoPin = D8;
