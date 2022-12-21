@@ -14,8 +14,8 @@ float readLightState();
 void responseLightState();
 int readSoundState();
 void responseSoundState();
-void resetServo();
-void swingServo(int degree);
+void resetServo(String servoID);
+void swingServo(String servoID, int degree);
 void publishConfirm(String type);
 // NETWORK
 void wifiConnect();
@@ -38,8 +38,10 @@ void setup()
 
   // Setup pin mode
   dht.begin();
-  myServo.attach(servoPin);
-  // resetServo();
+  servo180.attach(servo180Pin);
+  servo360.attach(servo360Pin);
+  resetServo("Servo180");
+  resetServo("Servo360");
   pinMode(lightSensor, INPUT);
   pinMode(soundSensor, INPUT);
 }
@@ -99,17 +101,29 @@ void responseSoundState()
   publishFlag(topicCameraPacksDevice, result_as_string);
 }
 
-void resetServo()
+void resetServo(String servoID)
 {
-  myServo.write(defaultDegree);
+  if (servoID == "Servo180")
+    servo180.write(defaultDegree);
+  else if (servoID == "Servo360")
+    servo360.write(defaultDegree);
   delay(1000);
 }
 
-void swingServo(int degree)
+void swingServo(String servoID, int degree)
 {
-  myServo.write(degree);
-  delay(1000);
-  resetServo();
+  if (servoID == "Servo180")
+  {
+    servo180.write(degree);
+    delay(1000);
+    resetServo("Servo180");
+  }
+  else if (servoID == "Servo360")
+  {
+    servo360.write(degree);
+    delay(1000);
+    resetServo("Servo360");
+  }
 }
 
 void publishConfirm(String type)
@@ -221,9 +235,12 @@ void callback(char *topic, byte *message, unsigned int length)
     responseSoundState();
     publishConfirm(typeOfConfirmation_SoundState);
   }
-  else if (strMsg == serverRequestServo)
+  else if (strMsg.startsWith("Servo", 7))
   {
-    swingServo(degree);
+    int pos = strMsg.indexOf(":");
+    String servoID = strMsg.substring(7, pos);
+    int servoDegree = strMsg.substring(pos + 1).toInt();
+    swingServo(servoID, servoDegree);
     publishConfirm(typeOfConfirmation_Servo);
   }
 }

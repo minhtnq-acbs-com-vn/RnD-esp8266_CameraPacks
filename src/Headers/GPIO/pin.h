@@ -6,9 +6,11 @@
 // Init pin
 const int dhtSensor = 3;
 DHT dht(dhtSensor, DHT22);
-Servo myServo;
+Servo servo180;
+Servo servo360;
 
 const int lightSensor = 4;
 
 const int soundSensor = 5;
-const int servoPin = D8;
+const int servo180Pin = D8;
+const int servo360Pin = D7;
