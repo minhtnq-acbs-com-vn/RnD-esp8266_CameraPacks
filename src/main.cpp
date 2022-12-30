@@ -14,7 +14,7 @@ float readLightState();
 void responseLightState();
 int readSoundState();
 void responseSoundState();
-void resetServo(String servoID);
+void resetServo(String servoID, int degree);
 void swingServo(String servoID, int degree);
 void publishConfirm(String type);
 // NETWORK
@@ -40,8 +40,8 @@ void setup()
   dht.begin();
   servo180.attach(servo180Pin);
   servo360.attach(servo360Pin);
-  resetServo("Servo180");
-  resetServo("Servo360");
+  resetServo("Servo180", 0);
+  resetServo("Servo360", 0);
   pinMode(lightSensor, INPUT);
   pinMode(soundSensor, INPUT);
 }
@@ -101,12 +101,30 @@ void responseSoundState()
   publishFlag(topicCameraPacksDevice, result_as_string);
 }
 
-void resetServo(String servoID)
+void resetServo(String servoID, int degree)
 {
-  if (servoID == "Servo180")
+  if (degree == 0)
+  {
     servo180.write(defaultDegree);
-  else if (servoID == "Servo360")
     servo360.write(defaultDegree);
+  }
+  else
+  {
+    if (servoID == "Servo180")
+    {
+      for (int i = degree; i >= defaultDegree; i--)
+      {
+        servo180.write(i);
+      }
+    }
+    else if (servoID == "Servo360")
+    {
+      for (int i = degree; i >= defaultDegree; i--)
+      {
+        servo360.write(i);
+      }
+    }
+  }
   delay(1000);
 }
 
@@ -114,15 +132,21 @@ void swingServo(String servoID, int degree)
 {
   if (servoID == "Servo180")
   {
-    servo180.write(degree);
+    for (int i = 0; i <= degree; i++)
+    {
+      servo180.write(i);
+    }
     delay(1000);
-    resetServo("Servo180");
+    resetServo("Servo180", degree);
   }
   else if (servoID == "Servo360")
   {
-    servo360.write(degree);
+    for (int i = 0; i <= degree; i++)
+    {
+      servo360.write(i);
+    }
     delay(1000);
-    resetServo("Servo360");
+    resetServo("Servo360", degree);
   }
 }
 
@@ -144,7 +168,6 @@ void publishConfirm(String type)
 void wifiConnect()
 {
   wifiManager.setTimeout(180);
-
   if (!wifiManager.autoConnect("AutoConnectAP"))
   {
     Serial.println("failed to connect and hit timeout");
