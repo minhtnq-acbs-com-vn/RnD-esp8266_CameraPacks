@@ -12,7 +12,6 @@ inline Servo servo360;
 
 inline int lightSensor = 4;
 
-inline int soundSensor = 5;
 inline int servo180Pin = D8;
 inline int servo360Pin = D7;
 

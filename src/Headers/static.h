@@ -13,8 +13,6 @@ float readTemp();
 void responseTemp();
 float readLightState();
 void responseLightState();
-int readSoundState();
-void responseSoundState();
 void resetServo(String servoID, int degree);
 void swingServo(String servoID, int degree);
 void publishConfirm(String type);

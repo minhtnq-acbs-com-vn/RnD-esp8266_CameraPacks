@@ -26,11 +26,6 @@ void callback(char *topic, byte *message, unsigned int length)
         responseLightState();
         publishConfirm(typeOfConfirmation_LightState);
     }
-    else if (strMsg == serverRequestSoundState)
-    {
-        responseSoundState();
-        publishConfirm(typeOfConfirmation_SoundState);
-    }
     else if (strMsg.startsWith("Servo", 7))
     {
         int pos = strMsg.indexOf(":");

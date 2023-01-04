@@ -31,18 +31,6 @@ void responseLightState()
   publishFlag(topicCameraPacksDevice, result_as_string);
 }
 
-int readSoundState()
-{
-  return digitalRead(soundSensor);
-}
-
-void responseSoundState()
-{
-  int result = readSoundState();
-  String result_as_string = soundID + String(result, 1);
-  publishFlag(topicCameraPacksDevice, result_as_string);
-}
-
 void resetServo(String servoID, int degree)
 {
   if (degree == 0)
@@ -98,8 +86,6 @@ void publishConfirm(String type)
     publishFlag(topicCameraPacksACK, deviceLightStateConfirmed);
   else if (type == typeOfConfirmation_Temp)
     publishFlag(topicCameraPacksACK, deviceTempConfirmed);
-  else if (type == typeOfConfirmation_SoundState)
-    publishFlag(topicCameraPacksACK, deviceSoundStateConfirmed);
   else if (type == typeOfConfirmation_Servo)
     publishFlag(topicCameraPacksACK, deviceServoConfirmed);
 }

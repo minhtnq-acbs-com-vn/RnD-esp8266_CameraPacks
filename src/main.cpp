@@ -20,7 +20,6 @@ void setup()
   resetServo("Servo180", 0);
   resetServo("Servo360", 90);
   pinMode(lightSensor, INPUT);
-  pinMode(soundSensor, INPUT);
 }
 
 void loop()
