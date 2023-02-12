@@ -12,7 +12,10 @@ inline Servo servo360;
 
 inline int lightSensor = 4;
 
-inline int servo180Pin = D8;
 inline int servo360Pin = D7;
+inline int servo180Pin = D8;
+
+inline int pin[] = {dhtSensor, lightSensor, servo360Pin, servo180Pin};
+inline String pinKey[] = {"dht", "lightState", "servo360", "servo180"};
 
 #endif

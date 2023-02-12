@@ -12,6 +12,9 @@ void setup()
   // Init wifi and mqtt
   wifiConnect();
   setupMQTTConnection();
+  sentDeviceInfo();
+  delay(500);
+  setupDeviceConfig();
 
   // Setup pin mode
   dht.begin();

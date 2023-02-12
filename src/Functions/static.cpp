@@ -17,6 +17,7 @@ void responseTemp()
   float result = readTemp();
   String result_as_string = tempID + String(result, 1);
   publishFlag(topicCameraPacksDevice, result_as_string);
+  publishConfirm(typeOfConfirmation_Temp);
 }
 
 float readLightState()
@@ -29,6 +30,7 @@ void responseLightState()
   float result = readLightState();
   String result_as_string = lightID + String(result, 1);
   publishFlag(topicCameraPacksDevice, result_as_string);
+  publishConfirm(typeOfConfirmation_LightState);
 }
 
 void resetServo(String servoID, int degree)
@@ -47,7 +49,7 @@ void resetServo(String servoID, int degree)
         servo180.write(i);
       }
     }
-    else if (servoID == "Servo360")
+    if (servoID == "Servo360")
     {
       for (int i = degree; i >= defaultDegree; i--)
       {
@@ -69,7 +71,7 @@ void swingServo(String servoID, int degree)
     delay(1000);
     resetServo("Servo180", degree);
   }
-  else if (servoID == "Servo360")
+  if (servoID == "Servo360")
   {
     for (int i = 0; i <= degree; i++)
     {
@@ -80,12 +82,21 @@ void swingServo(String servoID, int degree)
   }
 }
 
+void servoHandler(String request)
+{
+  int pos = request.indexOf(":");
+  String servoID = request.substring(7, pos);
+  int servoDegree = request.substring(pos + 1).toInt();
+  swingServo(servoID, servoDegree);
+  publishConfirm(typeOfConfirmation_Servo);
+}
+
 void publishConfirm(String type)
 {
   if (type == typeOfConfirmation_LightState)
     publishFlag(topicCameraPacksACK, deviceLightStateConfirmed);
-  else if (type == typeOfConfirmation_Temp)
+  if (type == typeOfConfirmation_Temp)
     publishFlag(topicCameraPacksACK, deviceTempConfirmed);
-  else if (type == typeOfConfirmation_Servo)
+  if (type == typeOfConfirmation_Servo)
     publishFlag(topicCameraPacksACK, deviceServoConfirmed);
 }

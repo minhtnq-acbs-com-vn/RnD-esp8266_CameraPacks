@@ -15,6 +15,7 @@ float readLightState();
 void responseLightState();
 void resetServo(String servoID, int degree);
 void swingServo(String servoID, int degree);
+void servoHandler(String request);
 void publishConfirm(String type);
 
 #endif

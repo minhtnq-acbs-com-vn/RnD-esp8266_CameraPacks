@@ -2,6 +2,7 @@
 
 void setupMQTTConnection()
 {
+    secureClient.setInsecure();
     client.setServer(mqttServer, port);
     client.setCallback(callback);
 }
@@ -15,25 +16,17 @@ void callback(char *topic, byte *message, unsigned int length)
         strMsg += (char)message[i];
     }
     Serial.println(strMsg);
+    requestFilter(strMsg);
+}
 
-    if (strMsg == serverRequestTemp)
-    {
+void requestFilter(String request)
+{
+    if (request == serverRequestTemp)
         responseTemp();
-        publishConfirm(typeOfConfirmation_Temp);
-    }
-    else if (strMsg == serverRequestLightState)
-    {
+    if (request == serverRequestLightState)
         responseLightState();
-        publishConfirm(typeOfConfirmation_LightState);
-    }
-    else if (strMsg.startsWith("Servo", 7))
-    {
-        int pos = strMsg.indexOf(":");
-        String servoID = strMsg.substring(7, pos);
-        int servoDegree = strMsg.substring(pos + 1).toInt();
-        swingServo(servoID, servoDegree);
-        publishConfirm(typeOfConfirmation_Servo);
-    }
+    if (request.startsWith("Servo", 7))
+        servoHandler(request);
 }
 
 void mqttReconnect()
