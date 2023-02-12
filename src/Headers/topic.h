@@ -3,10 +3,10 @@
 
 // Setup topic
 // From device
-inline const char *topicCameraPacksDevice = "espInCameraPacks/room1";
-inline const char *topicCameraPacksACK = "espInCameraPacks/room1/ACK";
+inline const char *topicCameraPacksDevice = "CameraPack/room1";
+inline const char *topicCameraPacksACK = "CameraPack/room1/ACK";
 // To device
-inline const char *topicCameraPacksServer = "espInCameraPacks/room1/server";
+inline const char *topicCameraPacksServer = "CameraPack/room1/server";
 
 inline String topic[] = {topicCameraPacksDevice, topicCameraPacksACK, topicCameraPacksServer};
 inline String topicKey[] = {"subscribe", "ack", "publish"};
