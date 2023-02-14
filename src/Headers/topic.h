@@ -8,7 +8,7 @@ inline const char *topicCameraPacksACK = "CameraPack/room1/ACK";
 // To device
 inline const char *topicCameraPacksServer = "CameraPack/room1/server";
 
-inline String topic[] = {topicCameraPacksDevice, topicCameraPacksACK, topicCameraPacksServer};
+inline String topic[] = {topicCameraPacksServer, topicCameraPacksACK, topicCameraPacksDevice};
 inline String topicKey[] = {"subscribe", "ack", "publish"};
 
 #endif
