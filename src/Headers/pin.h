@@ -1,16 +1,16 @@
 #ifndef PIN_H
 #define PIN_H
 
-#include <DHT.h>
+#include "DHT.h"
 #include <Servo.h>
 
 // Init pin
-inline int dhtSensor = 3;
-inline DHT dht(dhtSensor, DHT22);
+inline int dhtSensor = D3;
+inline DHT dht(dhtSensor, DHT11);
 inline Servo servo180;
 inline Servo servo360;
 
-inline int lightSensor = 4;
+inline int lightSensor = 2;
 
 inline int servo360Pin = D7;
 inline int servo180Pin = D8;

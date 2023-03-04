@@ -15,6 +15,7 @@ float readTemp()
 void responseTemp()
 {
   float result = readTemp();
+  Serial.println(result);
   String result_as_string = tempID + String(result, 1);
   publishFlag(topicCameraPacksDevice, result_as_string);
   publishConfirm(typeOfConfirmation_Temp);
@@ -22,13 +23,13 @@ void responseTemp()
 
 float readLightState()
 {
-  return analogRead(lightSensor);
+  return digitalRead(lightSensor);
 }
 
 void responseLightState()
 {
-  float result = readLightState();
-  String result_as_string = lightID + String(result, 1);
+  int result = readLightState();
+  String result_as_string = lightID + String(result);
   publishFlag(topicCameraPacksDevice, result_as_string);
   publishConfirm(typeOfConfirmation_LightState);
 }
@@ -64,12 +65,13 @@ void swingServo(String servoID, int degree)
 {
   if (servoID == "Servo180")
   {
-    for (int i = 0; i <= degree; i++)
-    {
-      servo180.write(i);
-    }
-    delay(1000);
-    resetServo("Servo180", degree);
+    servo180.write(degree);
+    // for (int i = 0; i <= degree; i++)
+    // {
+    //   servo180.write(i);
+    // }
+    // delay(1000);
+    // resetServo("Servo180", degree);
   }
   if (servoID == "Servo360")
   {
