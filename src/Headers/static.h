@@ -13,7 +13,7 @@ float readTemp();
 void responseTemp();
 float readLightState();
 void responseLightState();
-void resetServo(String servoID, int degree);
+void resetServo();
 void swingServo(String servoID, int degree);
 void servoHandler(String request);
 void publishConfirm(String type);

@@ -34,54 +34,18 @@ void responseLightState()
   publishConfirm(typeOfConfirmation_LightState);
 }
 
-void resetServo(String servoID, int degree)
+void resetServo()
 {
-  if (degree == 0)
-  {
-    servo180.write(defaultDegree);
-    servo360.write(defaultDegree);
-  }
-  else
-  {
-    if (servoID == "Servo180")
-    {
-      for (int i = degree; i >= defaultDegree; i--)
-      {
-        servo180.write(i);
-      }
-    }
-    if (servoID == "Servo360")
-    {
-      for (int i = degree; i >= defaultDegree; i--)
-      {
-        servo360.write(i);
-      }
-    }
-  }
-  delay(1000);
+  servo180.write(servo180DefaultDegree);
+  servo360.write(servo360DefaultDegree);
 }
 
 void swingServo(String servoID, int degree)
 {
   if (servoID == "Servo180")
-  {
     servo180.write(degree);
-    // for (int i = 0; i <= degree; i++)
-    // {
-    //   servo180.write(i);
-    // }
-    // delay(1000);
-    // resetServo("Servo180", degree);
-  }
   if (servoID == "Servo360")
-  {
-    for (int i = 0; i <= degree; i++)
-    {
-      servo360.write(i);
-    }
-    delay(1000);
-    resetServo("Servo360", degree);
-  }
+    servo360.write(degree);
 }
 
 void servoHandler(String request)

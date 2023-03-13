@@ -20,8 +20,7 @@ void setup()
   dht.begin();
   servo180.attach(servo180Pin);
   servo360.attach(servo360Pin);
-  resetServo("Servo180", 0);
-  resetServo("Servo360", 90);
+  resetServo();
   pinMode(lightSensor, INPUT);
 }
 

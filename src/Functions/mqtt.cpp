@@ -27,6 +27,8 @@ void requestFilter(String request)
         responseLightState();
     if (request.startsWith("Servo", 7))
         servoHandler(request);
+    if (request == serverRequestResetServo)
+        resetServo();
 }
 
 void mqttReconnect()

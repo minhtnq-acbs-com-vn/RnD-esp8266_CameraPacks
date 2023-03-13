@@ -11,6 +11,7 @@
 inline String serverRequestTemp = "requestTemp";
 inline String serverRequestLightState = "requestLightState";
 inline String serverRequestServo = "requestServo";
+inline String serverRequestResetServo = "requestResetServo";
 inline String requestAPI = "requestAPI";
 
 inline String lightID = "Light: ";
@@ -23,13 +24,14 @@ inline String typeOfConfirmation_Servo = "servo";
 inline String deviceLightStateConfirmed = "deviceLightStateConfirmed";
 inline String deviceTempConfirmed = "deviceTempConfirmed";
 inline String deviceServoConfirmed = "deviceServoConfirmed";
+inline String deviceServoResetConfirmed = "deviceServoResetConfirmed";
 
-inline int defaultDegree = 0;
-inline int degree = 180;
+inline int servo180DefaultDegree = 0;
+inline int servo360DefaultDegree = 90;
 
-inline String ack[] = {deviceLightStateConfirmed, deviceTempConfirmed, deviceServoConfirmed};
+inline String ack[] = {deviceLightStateConfirmed, deviceTempConfirmed, deviceServoConfirmed, deviceServoResetConfirmed};
 inline String ackKey[] = {"lightState", "temp", "servo"};
-inline String request[] = {serverRequestTemp, serverRequestLightState, serverRequestServo, requestAPI};
+inline String request[] = {serverRequestTemp, serverRequestLightState, serverRequestServo, serverRequestResetServo, requestAPI};
 inline String requestKey[] = {"temp", "lightState", "servo", "api"};
 
 String packToJson();

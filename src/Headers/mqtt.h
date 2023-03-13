@@ -8,7 +8,7 @@
 #include "api.h"
 
 // Setup MQTT
-inline const char *mqttServer = "42.119.31.182";
+inline const char *mqttServer = "192.168.68.116";
 inline const char *mqttUsername = "pi";
 inline const char *mqttPassword = "Kou-chan1153";
 inline int port = 1883;
