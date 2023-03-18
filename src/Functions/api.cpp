@@ -8,6 +8,7 @@ void sentDeviceInfo()
     String json = packToJson();
     Serial.println(json);
     http.addHeader("Content-Type", "application/json");
+    http.addHeader("userid", userID);
     int httpCode = http.POST(json);
     Serial.println(http.errorToString(httpCode));
     while (httpCode != 200)
@@ -35,7 +36,8 @@ String getDeviceInfo()
     HTTPClient http;
     String payload = "";
     http.begin(secureClient, apiQuery);
-
+    http.addHeader("userid", userID);
+    
     int httpCode = http.GET();
     Serial.println(http.errorToString(httpCode));
     while (httpCode != 200)
