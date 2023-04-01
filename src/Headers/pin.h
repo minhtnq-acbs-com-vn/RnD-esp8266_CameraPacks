@@ -6,7 +6,7 @@
 
 // Init pin
 inline int dhtSensor = D3;
-inline DHT dht(dhtSensor, DHT11);
+inline DHT dht(dhtSensor, DHT22);
 inline Servo servo180;
 inline Servo servo360;
 
