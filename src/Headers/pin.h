@@ -5,7 +5,7 @@
 #include <Servo.h>
 
 // Init pin
-inline int dhtSensor = D3;
+inline int dhtSensor = D1;
 inline DHT dht(dhtSensor, DHT22);
 inline Servo servo180;
 inline Servo servo360;
