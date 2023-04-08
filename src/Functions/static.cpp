@@ -16,12 +16,7 @@ void responseTemp()
 {
   float result = readTemp();
   Serial.println(result);
-  if (int(result) >= 30)
-    result = 0.0;
-  else if (int(result) < 30)
-    result = 1.0;
-  Serial.println(result);
-  String result_as_string = tempID + String(result, 1);
+  String result_as_string = tempID + String(result, 0);
   publishFlag(topicCameraPacksDevice, result_as_string);
   publishConfirm(typeOfConfirmation_Temp);
 }
