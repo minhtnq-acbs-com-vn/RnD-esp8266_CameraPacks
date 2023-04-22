@@ -22,13 +22,24 @@ void callback(char *topic, byte *message, unsigned int length)
 void requestFilter(String request)
 {
     if (request == serverRequestTemp)
+    {
+
         responseTemp();
+    }
     if (request == serverRequestLightState)
+    {
+
         responseLightState();
+    }
     if (request.startsWith("Servo", 7))
+    {
+
         servoHandler(request);
+    }
     if (request == serverRequestResetServo)
+    {
         resetServo();
+    }
 }
 
 void mqttReconnect()

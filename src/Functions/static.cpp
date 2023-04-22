@@ -42,10 +42,12 @@ void resetServo()
 
 void swingServo(String servoID, int degree)
 {
-  if (servoID == "Servo180")
+  if (servoID == "Servo180"){
     servo180.write(degree);
-  if (servoID == "Servo360")
+  }
+  if (servoID == "Servo360"){
     servo360.write(degree);
+  }
 }
 
 void servoHandler(String request)
