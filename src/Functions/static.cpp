@@ -29,6 +29,14 @@ float readLightState()
 void responseLightState()
 {
   int result = readLightState();
+  if (result == 0)
+  {
+    result = 1;
+  }
+  else
+  {
+    result = 0;
+  }
   String result_as_string = lightID + String(result);
   publishFlag(topicCameraPacksDevice, result_as_string);
   publishConfirm(typeOfConfirmation_LightState);
@@ -42,10 +50,12 @@ void resetServo()
 
 void swingServo(String servoID, int degree)
 {
-  if (servoID == "Servo180"){
+  if (servoID == "Servo180")
+  {
     servo180.write(degree);
   }
-  if (servoID == "Servo360"){
+  if (servoID == "Servo360")
+  {
     servo360.write(degree);
   }
 }
