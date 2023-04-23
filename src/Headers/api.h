@@ -12,7 +12,7 @@
 inline const String userID = "640ee59066f4b889269ff405";
 inline const String systemKey = "4tiNh!B&*$^78PTKqp*v";
 inline const String apiHost = "https://rndaedss.ddns.net/api/v1/device";
-inline const String roomName = "room1";
+inline const String roomName = "G2";
 inline const String deviceModule = "CameraPack";
 inline const String deviceFunc[] = {"Temp", "LightState", "Servo360", "Servo180"};
 inline const String deviceName = String(ESP.getChipId());
