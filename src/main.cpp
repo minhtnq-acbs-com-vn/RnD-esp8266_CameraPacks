@@ -10,8 +10,9 @@ void setup()
   Serial.print("Connecting to WiFi");
   delay(500);
 
-  servo180.attach(servo180Pin);
-  servo360.attach(servo360Pin);
+  // Setup pin mode
+  servo180.attach(servo180Pin, 500, 2500);
+  servo360.attach(servo360Pin, 500, 2500);
   resetServo();
   pinMode(lightSensor, INPUT);
   dht.begin();
@@ -21,8 +22,6 @@ void setup()
   setupMQTTConnection();
   sentDeviceInfo();
   setupDeviceConfig();
-
-  // Setup pin mode
 }
 
 void loop()

@@ -14,7 +14,7 @@ inline String serverRequestServo = "requestServo";
 inline String serverRequestResetServo = "requestResetServo";
 inline String requestAPI = "requestAPI";
 
-inline String lightID = "light: ";
+inline String lightID = "light:";
 inline String tempID = "temp: ";
 
 inline String typeOfConfirmation_LightState = "light_state";
